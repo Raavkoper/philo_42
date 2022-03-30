@@ -6,7 +6,7 @@
 /*   By: rkoper <rkoper@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/29 13:59:57 by rkoper        #+#    #+#                 */
-/*   Updated: 2022/03/30 14:35:07 by rkoper        ########   odam.nl         */
+/*   Updated: 2022/03/30 14:59:21 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,12 @@ void	*philo_action(void *void_philo)
 	pthread_mutex_t lock;
 	
 	philo = (t_philos *)void_philo;
+	if (philo->data->num_philos == 1)
+		print_action(philo->data->philos, 'd');
 	if (philo->id % 2)
 		usleep(philo->data->time_to_eat * 1000);
 	while (1)
 	{
-		printf("hoi\n");
 		eaty_time(philo);
 		sleepy_time(philo);
 		thinky_time(philo);

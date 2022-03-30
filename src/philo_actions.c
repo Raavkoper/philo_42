@@ -6,7 +6,7 @@
 /*   By: rkoper <rkoper@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/29 13:56:28 by rkoper        #+#    #+#                 */
-/*   Updated: 2022/03/30 14:35:41 by rkoper        ########   odam.nl         */
+/*   Updated: 2022/03/30 14:58:06 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,11 @@ int	check_right(t_philos *philo)
 void	eaty_time(t_philos *philo)
 {
 	pthread_mutex_lock(&philo->data->forks[philo->id - 1]);
-	printf("hoi\n");
 	pthread_mutex_lock(&philo->data->forks[check_right(philo)]);
-	printf("hoi\n");
 	print_action(philo, 'e');
 	philo->meal = time_stamp() - philo->data->start;
 	if (philo->meal - philo->prev_meal > philo->data->time_to_die)
-	{
 		print_action(philo, 'd');
-		exit (0);
-	}
 	philo->prev_meal = philo->meal;
 	usleep(philo->data->time_to_eat * 1000);
 	pthread_mutex_unlock(&philo->data->forks[philo->id - 1]);
@@ -61,8 +56,11 @@ long	time_stamp(void)
 void	print_action(t_philos *philo, char c)
 {
 	if (c == 'd')
+	{
 		printf("%ld   %sHombre %d tried to swim in lava💀❌%s\n" \
 		,time_stamp() - philo->data->start, RED, philo->id, NC);
+		exit (0);
+	}
 	else if (c == 'e')
 		printf("%ld   %sHombre %d is in eaty time🍕🍻%s\n" \
 		,time_stamp() - philo->data->start, RED, philo->id, NC);
