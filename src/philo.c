@@ -6,7 +6,7 @@
 /*   By: rkoper <rkoper@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/29 13:59:57 by rkoper        #+#    #+#                 */
-/*   Updated: 2022/03/29 17:23:43 by rkoper        ########   odam.nl         */
+/*   Updated: 2022/03/30 14:35:07 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,14 @@ void	*philo_action(void *void_philo)
 	pthread_mutex_t lock;
 	
 	philo = (t_philos *)void_philo;
+	if (philo->id % 2)
+		usleep(philo->data->time_to_eat * 1000);
 	while (1)
 	{
+		printf("hoi\n");
 		eaty_time(philo);
-		thinky_time(philo);
 		sleepy_time(philo);
+		thinky_time(philo);
 	}
 }
 
@@ -34,7 +37,8 @@ void	create_philos(t_data *data)
 	while (i < data->num_philos)
 	{
 		data->philos[i].id = i + 1;
-		data->philos[i].fork = i;
+		data->philos[i].meal = 0;
+		data->philos[i].prev_meal = 0;
 		data->philos[i].data = data;
 		pthread_mutex_init(&data->forks[i], NULL);
 		pthread_create(&data->philos[i].thread, NULL, philo_action, &data->philos[i]);
@@ -51,6 +55,7 @@ void	set_data(t_data *data, char **argv)
 	data->times_to_eat = ft_atoi(argv[5]);
 	data->philos = malloc(sizeof(t_philos) * data->num_philos);
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->num_philos);
+	data->start = time_stamp();
 }
 
 int main(int argc, char **argv)
