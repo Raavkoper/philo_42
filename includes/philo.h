@@ -6,7 +6,7 @@
 /*   By: rkoper <rkoper@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/29 08:56:39 by rkoper        #+#    #+#                 */
-/*   Updated: 2022/03/30 13:15:56 by rkoper        ########   odam.nl         */
+/*   Updated: 2022/03/31 13:59:46 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define BLUE "\033[0;34m"
 # define RED "\x1B[31m"
 # define YELLOW "\x1B[33m"
+# define GREEN "\033[1m\033[32m"
 
 typedef struct	s_philos {
 	pthread_t thread;
@@ -39,8 +40,11 @@ typedef struct	s_data {
 	int			time_to_sleep;
 	int			times_to_eat;
 	long		start;
+	int			state;
 	t_philos	*philos;
 	pthread_mutex_t *forks;
+	pthread_mutex_t	is_dead;
+	pthread_mutex_t right;
 }				t_data;
 
 
@@ -49,9 +53,9 @@ void	*philo_action(void *philo);
 void	create_philos(t_data *data);
 void	set_data(t_data *data, char **argv);
 void	eaty_time(t_philos *philo);
-void	thinky_time(t_philos *philo);
-void	sleepy_time(t_philos *philo);
 int		check_right(t_philos *philo);
-void	print_action(t_philos *philo, char c);
+void	print_action(t_philos *philo, char c, int fork);
 long	time_stamp(void);
+int		check_dead(t_data *data);
+int		check(t_philos *philo);
 #endif
