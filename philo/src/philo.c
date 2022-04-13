@@ -6,7 +6,7 @@
 /*   By: rkoper <rkoper@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/29 13:59:57 by rkoper        #+#    #+#                 */
-/*   Updated: 2022/04/13 16:58:09 by rkoper        ########   odam.nl         */
+/*   Updated: 2022/04/13 20:53:15 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	*philo_action(void *void_philo)
 		return (NULL);
 	}
 	if (philo->id % 2)
-		usleep(philo->data->time_to_eat * 1000);
+		ft_sleep(philo->data->time_to_eat, philo->data);
 	while (!philo->data->died && philo->meals_left)
 	{
 		eaty_time(philo);
@@ -59,17 +59,17 @@ void	create_philos(t_data *data)
 
 int	set_data(t_data *data, char **argv)
 {
-	if (ft_atoi(argv[1]) < 1 || ft_atoi(argv[2]) < 0 || ft_atoi(argv[3]) < 0 \
-		|| ft_atoi(argv[4]) < 0)
-	{
-		printf("input error\n");
-		return (0);
-	}
 	data->num_philos = ft_atoi(argv[1]);
 	data->time_to_die = ft_atoi(argv[2]);
 	data->time_to_eat = ft_atoi(argv[3]);
 	data->time_to_sleep = ft_atoi(argv[4]);
 	data->times_to_eat = ft_atoi(argv[5]);
+	if (data->num_philos < 1 || data->time_to_die <= 0 || data->time_to_eat <= 0 \
+		|| data->time_to_sleep <= 0)
+	{
+		printf("input error\n");
+		return (0);
+	}
 	data->died = 0;
 	pthread_mutex_init(&data->eating, NULL);
 	pthread_mutex_init(&data->writing, NULL);

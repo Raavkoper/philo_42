@@ -6,7 +6,7 @@
 /*   By: rkoper <rkoper@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/25 16:10:19 by rkoper        #+#    #+#                 */
-/*   Updated: 2022/04/13 13:19:52 by rkoper        ########   odam.nl         */
+/*   Updated: 2022/04/13 20:54:19 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int	ft_atoi(const char *str)
 		str++;
 		i++;
 	}
+	if (*str != '\0')
+		return (-1);
 	return (outcome * min);
 }
 
