@@ -6,7 +6,7 @@
 /*   By: rkoper <rkoper@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/29 13:59:57 by rkoper        #+#    #+#                 */
-/*   Updated: 2022/04/13 20:53:15 by rkoper        ########   odam.nl         */
+/*   Updated: 2022/04/14 13:17:18 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ int	set_data(t_data *data, char **argv)
 	data->time_to_eat = ft_atoi(argv[3]);
 	data->time_to_sleep = ft_atoi(argv[4]);
 	data->times_to_eat = ft_atoi(argv[5]);
-	if (data->num_philos < 1 || data->time_to_die <= 0 || data->time_to_eat <= 0 \
-		|| data->time_to_sleep <= 0)
+	if (data->num_philos < 1 || data->time_to_die <= 0 \
+		|| data->time_to_eat <= 0 || data->time_to_sleep <= 0)
 	{
 		printf("input error\n");
 		return (0);

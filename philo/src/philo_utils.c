@@ -6,7 +6,7 @@
 /*   By: rkoper <rkoper@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/25 16:10:19 by rkoper        #+#    #+#                 */
-/*   Updated: 2022/04/13 20:54:19 by rkoper        ########   odam.nl         */
+/*   Updated: 2022/04/14 13:15:40 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,10 @@ int	ft_atoi(const char *str)
 		return (-1);
 	while (*str == ' ' || (*str >= 9 && *str <= 13))
 		str++;
-	if (*str == '-' || *str == '+')
-	{	
-		if (*str == '-')
-			min *= -1;
+	if (*str == '+')
 		str++;
-	}
+	if (*str == '-')
+		return (-1);
 	while (*str >= 48 && *str <= 57)
 	{
 		outcome = (outcome * 10) + (*str - '0');
