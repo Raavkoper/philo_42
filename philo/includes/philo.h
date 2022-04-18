@@ -6,7 +6,7 @@
 /*   By: rkoper <rkoper@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/29 08:56:39 by rkoper        #+#    #+#                 */
-/*   Updated: 2022/04/13 13:56:52 by rkoper        ########   odam.nl         */
+/*   Updated: 2022/04/18 10:16:21 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	*philo_action(void *philo);
 void	create_philos(t_data *data);
 int		set_data(t_data *data, char **argv);
 void	eaty_time(t_philos *philo);
-void	ft_sleep(long time, t_data *data);
+void	ft_sleep(long time);
 int		check_right(t_philos *philo);
 void	print_action(t_philos *philo, char c, int fork);
 long	time_stamp(void);

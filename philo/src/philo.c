@@ -6,7 +6,7 @@
 /*   By: rkoper <rkoper@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/29 13:59:57 by rkoper        #+#    #+#                 */
-/*   Updated: 2022/04/14 13:17:18 by rkoper        ########   odam.nl         */
+/*   Updated: 2022/04/18 10:16:17 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ void	*philo_action(void *void_philo)
 		return (NULL);
 	}
 	if (philo->id % 2)
-		ft_sleep(philo->data->time_to_eat, philo->data);
+		ft_sleep(philo->data->time_to_eat);
 	while (!philo->data->died && philo->meals_left)
 	{
 		eaty_time(philo);
 		if (!philo->meals_left)
 			return (NULL);
 		print_action(philo, 's', 0);
-		ft_sleep(philo->data->time_to_sleep, philo->data);
+		ft_sleep(philo->data->time_to_sleep);
 		print_action(philo, 't', 0);
 	}
 	return (NULL);
